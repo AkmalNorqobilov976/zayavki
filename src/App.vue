@@ -1,32 +1,36 @@
 <template>
-  <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav>
-    <router-view/>
+  <div>
+    <h1 v-if="$store.state.isLoading">Loading....</h1>
+    <router-view v-if="$store.state.isAuthenticated" />
+    <Signin v-else />
+    
   </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+// import axios from '@/plugins/axios.js'
+// import socket from './plugins/socketIo';
+import Signin from './views/register/signin.vue';
 
-nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
-</style>
+export default {
+  name: "App",
+  data: () => ({
+    //
+    socketInstance: null
+  }),
+  created() {
+    this.$store.dispatch('getPortalOrders', { status: "new", page: 1, perPage: 20 })
+    // axios.get('/portal-orders/?status=hold&page=10&perPage=15').then(res => {
+    //   console.log(res.data);
+    // })
+    // axios.get('http://localhost:3300/socketio_api/hey').then(res=>{
+    //   console.log(res.data);
+    // }).catch((err)=>{
+    //   console.log(err);
+    // })
+    // socket.emit('salom', ['yaxshimisizlar o\'zi ko\'rinmaysizlar ham'])    
+    // console.log(this.socketInstance);
+  },
+  components: { Signin }
+};
+</script>

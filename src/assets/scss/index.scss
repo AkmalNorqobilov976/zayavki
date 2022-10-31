@@ -1,0 +1,46 @@
+// scrollbar
+
+body{
+    overflow: hidden;
+}
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: gray;
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: gray;
+}
+
+.dot-border{
+    border: 3px dotted black;
+}
+
+.bottom-dot-border{
+    border-bottom: 3px dotted black;
+}
+
+.top-solid-border{
+    border-top: 3px solid black;
+}
+
+.h-100{
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.d-unset{
+    display: unset;
+}
